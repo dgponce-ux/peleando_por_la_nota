@@ -1,24 +1,22 @@
 
-from Personaje import Personaje
+from src.Personaje import Personaje
+
 
 class Jugador(Personaje):
+    "Clase que representa al jugador, hereda de personaje"
     def __init__(self, nombre, fuerza, ataque):
-        Personaje.__init__(self, vida_maxima=100)
-        self.nombre = nombre
+        "constructor de la clase jugador, recibe un parametro de nombre, fuerza, ataque"
+        super().__init__(nombre, 100)
         self.posicion_x = 0
         self.fuerza = fuerza
         self.ataque = ataque
 
-
     def calcularDanio(self):
-        return self.fuerza + self.ataque
-    
-    def bloquear(self):
-        self.esta_bloqueando = True
-        print(f"{self.nombre} está bloqueando!")
+        danio = self.fuerza + self.ataque
+        return danio
 
-    def actualizar(self):  # Corregido
-        if self.vida <= 0:
+    def actualizar(self):
+        if self.vida < 0:
             self.morir()
         self.resetearEstado()
 

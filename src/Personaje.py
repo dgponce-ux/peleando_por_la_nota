@@ -1,5 +1,9 @@
+
+
 class Personaje:
+    "Clase que representa al personaje basico del cual los demas heredan"
     def __init__(self, nombre, vida_maxima):
+        "Constructor de la clase personaje, recibe un parametro nombre, vida, esta_atacando, esta_bloqueando"
         self.nombre = nombre
         self.vida_maxima = vida_maxima
         self.vida = vida_maxima
@@ -30,8 +34,9 @@ class Personaje:
 
     def atacar(self, enemigo):          
         self.esta_atacando = True
-        danio = 1
+        danio = self.calcularDanio()
         enemigo.recibir_Danio(danio)
+
 
     def morir(self):
         # self.vida = 0
