@@ -1,23 +1,29 @@
 class Personaje:
-    def __init__(self, vida_maxima):
+    def __init__(self, nombre, vida_maxima):
+        self.nombre = nombre
         self.vida_maxima = vida_maxima
         self.vida = vida_maxima
         self.esta_atacando = False
         self.esta_bloqueando = False
 
     def recibir_Danio(self, danio):
+        if (danio < 0 ): 
+            print("El daño no puede ser negativo")
+    
         if self.esta_bloqueando:
-            danio = danio // 2
-            print(f"{self.nombre} bloqueó parte del daño!")
+            print(f"{self.nombre} bloqueó el daño!")
+        else:
+            self.vida = self.vida - danio
+            if self.vida < 0:
+                self.vida = 0
+            print(f"{self.nombre} recibió {danio} de daño")
 
-        self.vida = self.vida - danio
-        print(f"{self.nombre} recibió {danio} de daño")
-
-        if self.vida <0:
+        if self.vida == 0:
             self.morir()
 
     def estoy_Vivo(self):
-        return self.vida > 0
+        # return self.vida > 0
+        return True
     
     def mostrar_estado(self):
         return self.vida
@@ -28,6 +34,7 @@ class Personaje:
         enemigo.recibir_Danio(danio)
 
     def morir(self):
-        if self.vida < 0:
-            self.vida = 0
-            print(f"{self.nombre} ha muerto!")
+        # self.vida = 0
+        print(f"{self.nombre} ha muerto!")
+        return True
+        

@@ -1,4 +1,5 @@
 from Jugador import Jugador
+from Personaje import Personaje
 
 def main():
     print("=== URBAN CHAMPION PYTHON EDITION ===")
