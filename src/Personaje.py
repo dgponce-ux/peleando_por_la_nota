@@ -28,7 +28,7 @@ class Personaje:
     def mostrar_estado(self):
         return self.vida
 
-    def atacar(self, enemigo):
+    def atacar(self, enemigo):          
         self.esta_atacando = True
         danio = 1
         enemigo.recibir_Danio(danio)

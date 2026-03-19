@@ -9,11 +9,6 @@ class Jugador(Personaje):
         self.fuerza = fuerza
         self.ataque = ataque
 
-    def atacar(self, enemigo):
-        self.esta_atacando = True
-        danio = self.calcularDanio()
-        print(f"{self.nombre} ataca por {danio} daño!")
-        enemigo.recibir_Danio(danio)
 
     def calcularDanio(self):
         return self.fuerza + self.ataque
