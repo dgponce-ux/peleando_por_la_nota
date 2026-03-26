@@ -1,59 +1,39 @@
+#main hecho con ia
 from Jugador import Jugador
 from Personaje import Personaje
 
 def main():
-    print("=== URBAN CHAMPION PYTHON EDITION ===")
+    # Crear jugadores
+    jugador1 = Jugador("Jugador 1", fuerza=10, ataque=5)
+    jugador2 = Jugador("Jugador 2", fuerza=8, ataque=6)
 
-    jugador1 = Jugador("Jugador 1", fuerza=5, ataque=3)
-    jugador2 = Jugador("Jugador 2", fuerza=4, ataque=4)
-
-    turno = 1
-
+    # Bucle de pelea
     while jugador1.estoy_Vivo() and jugador2.estoy_Vivo():
-
-        print("\n--- ESTADO ---")
-        print(f"{jugador1.nombre}: {jugador1.vida} HP")
-        print(f"{jugador2.nombre}: {jugador2.vida} HP")
-
-        if turno == 1:
-            actual = jugador1
-            enemigo = jugador2
-        else:
-            actual = jugador2
-            enemigo = jugador1
-
-        print(f"\nTurno de {actual.nombre}")
-        print("1. Atacar")
-        print("2. Bloquear")
-
-        accion = input("Elegí una opción: ")
-
-        if accion == "1":
-            actual.atacar(enemigo)
-
-        elif accion == "2":
-            actual.bloquear()
-
-        else:
-            print("Acción inválida")
-            continue  # vuelve a pedir acción
-
-        # 👇 IMPORTANTE: después de la acción, se resuelven estados
-        # (el daño ya se aplicó dentro de atacar)
-
-        # Resetear estados de ambos jugadores
+        
+        # Turno jugador 1
+        print("\n--- Turno Jugador 1 ---")
+        jugador1.atacar(jugador2)
         jugador1.resetearEstado()
+        jugador1.mostrar_estado()
+        jugador2.mostrar_estado()
+
+        if not jugador2.estoy_Vivo():
+            break
+
+        # Turno jugador 2
+        print("\n--- Turno Jugador 2 ---")
+        jugador2.atacar(jugador1)
         jugador2.resetearEstado()
+        jugador1.mostrar_estado()
+        jugador2.mostrar_estado()
 
-        # Cambiar turno
-        turno = 2 if turno == 1 else 1
-
-    print("\n=== FIN DEL JUEGO ===")
-
+    # Resultado final
+    print("\n--- FIN DEL JUEGO ---")
     if jugador1.estoy_Vivo():
-        print(f"Ganó {jugador1.nombre}")
+        print(f"Ganador: {jugador1.nombre}")
     else:
-        print(f"Ganó {jugador2.nombre}")
+        print(f"Ganador: {jugador2.nombre}")
 
 
-main()
+if __name__ == "__main__":
+    main()

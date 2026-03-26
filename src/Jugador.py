@@ -1,7 +1,4 @@
-
-from src.Personaje import Personaje
-
-
+from Personaje import Personaje
 class Jugador(Personaje):
     "Clase que representa al jugador, hereda de personaje"
     def __init__(self, nombre, fuerza, ataque):
@@ -15,12 +12,6 @@ class Jugador(Personaje):
         "Calcula el daño en base a fuerza y ataque"
         danio = self.fuerza + self.ataque
         return danio
-
-    def actualizar(self):
-        "Actualiza el estado del jugador en cada turno"
-        if self.vida < 0:
-            self.morir()
-        self.resetearEstado()
 
     def resetearEstado(self):
         "Reinicia los estados de ataque y bloqueo"

@@ -1,5 +1,3 @@
-
-
 class Personaje:
     "Clase que representa al personaje basico del cual los demas heredan"
     def __init__(self, nombre, vida_maxima):
@@ -14,6 +12,7 @@ class Personaje:
         "Reduce la vida del personaje según el daño recibido"
         if (danio < 0 ): 
             print("El daño no puede ser negativo")
+            return
     
         if self.esta_bloqueando:
             print(f"{self.nombre} bloqueó el daño!")
@@ -29,15 +28,15 @@ class Personaje:
 
     def estoy_Vivo(self):
         "Devuelve la vida actual del personaje"
-        # return self.vida > 0
-        return True
+        return self.vida > 0
     
 
-    "Ataca a otro personaje calculando el daño"
+    "Muestra la vida actual del personaje"
     def mostrar_estado(self):
         return self.vida  
 
-    def atacar(self, enemigo):          
+    def atacar(self, enemigo):
+        "Ataca a otro personaje calculando el daño"
         self.esta_atacando = True
         danio = self.calcularDanio()
         enemigo.recibir_Danio(danio)
